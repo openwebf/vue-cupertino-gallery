@@ -1,9 +1,6 @@
 <template>
-  <div v-if="!isWebF">
-    <browser-warning />
-  </div>
-  <div v-else>
-    <router-view path="/" title="首页">
+  <div v-if="isWebF">
+    <router-view path="/" title="Home">
       <home-page></home-page>
     </router-view>
     <router-view path="/button" title="Button">
@@ -66,7 +63,7 @@
     <router-view path="/form_section" title="Form Section">
       <form-section-page></form-section-page>
     </router-view>
-      <router-view path="/list_tile" title="List Tile">
+    <router-view path="/list_tile" title="List Tile">
       <list-tile-page></list-tile-page>
     </router-view>
     <router-view path="/list_section" title="List Section">
@@ -75,6 +72,9 @@
     <router-view path="/tab_bar" title="Tab Bar">
       <tab-bar-page></tab-bar-page>
     </router-view>
+  </div>
+  <div v-else>
+    <browser-warning />
   </div>
 </template>
 
@@ -137,7 +137,7 @@ export default {
   },
   data() {
     return {
-      isWebF: false
+      isWebF: true
     };
   },
   mounted() {
