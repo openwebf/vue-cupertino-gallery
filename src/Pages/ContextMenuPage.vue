@@ -28,7 +28,7 @@
               />
             </div>
             <div class="menu-container">
-              <flutter-cupertino-context-menu ref="menu1" @defaultAction="onDefaultAction" @delete="onDelete">
+              <flutter-cupertino-context-menu ref="menu1" @select="handleSelect">
                 <div class="preview-box">
                   <flutter-cupertino-icon type="photo" style="font-size: 48px;" />
                   <div class="preview-text">Switch controlled</div>
@@ -41,7 +41,7 @@
           <div class="component-item">
             <div class="item-label">Custom Menu Items</div>
             <div class="menu-container">
-              <flutter-cupertino-context-menu ref="menu2" @share="onShare" @favorite="onFavorite">
+              <flutter-cupertino-context-menu ref="menu2" @select="handleSelect">
                 <div class="preview-box">
                   <flutter-cupertino-icon type="heart" style="font-size: 48px;" />
                   <div class="preview-text">Custom menu item</div>
@@ -54,8 +54,7 @@
           <div class="component-item">
             <div class="item-label">With Destructive Action</div>
             <div class="menu-container">
-              <flutter-cupertino-context-menu ref="menu3" enable-haptic-feedback @open="onOpen" @edit="onEdit"
-                @delete="onDelete">
+              <flutter-cupertino-context-menu ref="menu3" enable-haptic-feedback @select="handleSelect">
                 <div class="preview-box">
                   <flutter-cupertino-icon type="doc_text" style="font-size: 48px;" />
                   <div class="preview-text">Document action</div>
@@ -68,8 +67,7 @@
           <div class="component-item">
             <div class="item-label">With Default Action</div>
             <div class="menu-container">
-              <flutter-cupertino-context-menu ref="menu4" enable-haptic-feedback @call="onCall" @message="onMessage"
-                @email="onEmail">
+              <flutter-cupertino-context-menu ref="menu4" enable-haptic-feedback @select="handleSelect">
                 <div class="preview-box">
                   <flutter-cupertino-icon type="person_circle" style="font-size: 48px;" />
                   <div class="preview-text">Contact</div>
@@ -165,15 +163,9 @@ export default {
       });
     },
     // --- Event Handlers ---
-    onShare() { console.log('Share pressed'); },
-    onFavorite() { console.log('Favorite pressed'); },
-    onOpen() { console.log('Open pressed'); },
-    onDelete() { console.log('Delete pressed (menu0, menu1, or menu3)'); },
-    onCall() { console.log('Call pressed'); },
-    onMessage() { console.log('Message pressed'); },
-    onEmail() { console.log('Email pressed'); },
-    onDefaultAction() { console.log('Default action pressed (menu1)'); },
-    onEdit() { console.log('Edit pressed'); }
+    handleSelect(event) {
+      console.log('Context Menu Event: select', event.detail);
+    },
   },
 }
 </script>

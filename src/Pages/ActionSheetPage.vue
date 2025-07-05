@@ -1,8 +1,7 @@
 <template>
   <div id="main">
     <!-- Instantiate the non-visual action sheet component -->
-    <flutter-cupertino-action-sheet ref="actionSheet" @share="handleShare" @delete="handleDelete"
-      @archive="handleArchive" @cancel="handleCancel" />
+    <flutter-cupertino-action-sheet ref="actionSheet" @select="handleSelect" />
 
     <webf-listview id="list">
       <div class="component-section">
@@ -99,19 +98,9 @@ export default {
     },
 
     // Event Handlers
-    handleShare(event) {
-      console.log('Action Sheet Event: share', event.detail);
+    handleSelect(event) {
+      console.log('Action Sheet Event: select', event.detail);
     },
-    handleDelete(event) {
-      console.log('Action Sheet Event: delete', event.detail);
-    },
-    handleArchive(event) {
-      console.log('Action Sheet Event: archive', event.detail);
-    },
-    handleCancel(event) {
-      console.log('Action Sheet Event: cancel', event.detail);
-    },
-    // Add handlers for other events like proceed, review if needed
   }
 };
 </script>
