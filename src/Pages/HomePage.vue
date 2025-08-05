@@ -233,16 +233,19 @@
 </template>
 
 <script>
+import { useNavigate } from '@openwebf/vue-router';
+
 export default {
-  methods: {
-    navigateTo(path) {
-      // Assuming window.webf.hybridHistory is the correct way to navigate
-      if (window.webf && window.webf.hybridHistory) {
-        window.webf.hybridHistory.pushState({}, path);
-      } else {
-        console.error('Navigation object (window.webf.hybridHistory) not found.');
-      }
-    }
+  setup() {
+    const { navigate } = useNavigate();
+    
+    const navigateTo = (path) => {
+      navigate(path);
+    };
+    
+    return {
+      navigateTo
+    };
   }
 }
 </script>

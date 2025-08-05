@@ -1,85 +1,41 @@
 <template>
   <div v-if="isWebF">
-    <router-view path="/" title="Home">
-      <home-page></home-page>
-    </router-view>
-    <router-view path="/button" title="Button">
-      <button-page></button-page>
-    </router-view>
-    <router-view path="/switch" title="Switch">
-      <switch-page></switch-page>
-    </router-view>
-    <router-view path="/input" title="Input">
-      <input-page></input-page>
-    </router-view>
-    <router-view path="/icon" title="Icon">
-      <icon-page></icon-page>
-    </router-view>
-    <router-view path="/search_input" title="SearchInput">
-      <search-input-page></search-input-page>
-    </router-view>
-    <router-view path="/textarea" title="Textarea">
-      <textarea-page></textarea-page>
-    </router-view>
-    <router-view path="/segmented_tab" title="Segmented Tab">
-      <segmented-tab-page></segmented-tab-page>
-    </router-view>
-    <router-view path="/alert" title="Alert">
-      <alert-page></alert-page>
-    </router-view>
-    <router-view path="/date_picker" title="Date Picker">
-      <date-picker-page></date-picker-page>
-    </router-view>
-    <router-view path="/loading" title="Loading">
-      <loading-page></loading-page>
-    </router-view>
-    <router-view path="/modal_popup" title="Modal Popup">
-      <modal-popup-page></modal-popup-page>
-    </router-view>
-    <router-view path="/picker" title="Picker">
-      <picker-page></picker-page>
-    </router-view>
-    <router-view path="/slider" title="Slider">
-      <slider-page></slider-page>
-    </router-view>
-    <router-view path="/context_menu" title="Context Menu">
-      <context-menu-page></context-menu-page>
-    </router-view>
-    <router-view path="/checkbox" title="Checkbox">
-      <checkbox-page></checkbox-page>
-    </router-view>
-    <router-view path="/radio" title="Radio">
-      <radio-page></radio-page>
-    </router-view>
-    <router-view path="/timer_picker" title="Timer Picker">
-      <timer-picker-page></timer-picker-page>
-    </router-view>
-    <router-view path="/action_sheet" title="Action Sheet">
-      <action-sheet-page></action-sheet-page>
-    </router-view>
-    <router-view path="/form_row" title="Form Row">
-      <form-row-page></form-row-page>
-    </router-view>
-    <router-view path="/form_section" title="Form Section">
-      <form-section-page></form-section-page>
-    </router-view>
-    <router-view path="/list_tile" title="List Tile">
-      <list-tile-page></list-tile-page>
-    </router-view>
-    <router-view path="/list_section" title="List Section">
-      <list-section-page></list-section-page>
-    </router-view>
-    <router-view path="/tab_bar" title="Tab Bar">
-      <tab-bar-page></tab-bar-page>
-    </router-view>
+    <Routes>
+      <Route path="/" :element="HomePage" title="Home" />
+      <Route path="/button" :element="ButtonPage" title="Button" />
+      <Route path="/switch" :element="SwitchPage" title="Switch" />
+      <Route path="/input" :element="InputPage" title="Input" />
+      <Route path="/icon" :element="IconPage" title="Icon" />
+      <Route path="/search_input" :element="SearchInputPage" title="SearchInput" />
+      <Route path="/textarea" :element="TextareaPage" title="Textarea" />
+      <Route path="/segmented_tab" :element="SegmentedTabPage" title="Segmented Tab" />
+      <Route path="/alert" :element="AlertPage" title="Alert" />
+      <Route path="/date_picker" :element="DatePickerPage" title="Date Picker" />
+      <Route path="/loading" :element="LoadingPage" title="Loading" />
+      <Route path="/modal_popup" :element="ModalPopupPage" title="Modal Popup" />
+      <Route path="/picker" :element="PickerPage" title="Picker" />
+      <Route path="/slider" :element="SliderPage" title="Slider" />
+      <Route path="/context_menu" :element="ContextMenuPage" title="Context Menu" />
+      <Route path="/checkbox" :element="CheckboxPage" title="Checkbox" />
+      <Route path="/radio" :element="RadioPage" title="Radio" />
+      <Route path="/timer_picker" :element="TimerPickerPage" title="Timer Picker" />
+      <Route path="/action_sheet" :element="ActionSheetPage" title="Action Sheet" />
+      <Route path="/form_row" :element="FormRowPage" title="Form Row" />
+      <Route path="/form_section" :element="FormSectionPage" title="Form Section" />
+      <Route path="/list_tile" :element="ListTilePage" title="List Tile" />
+      <Route path="/list_section" :element="ListSectionPage" title="List Section" />
+      <Route path="/tab_bar" :element="TabBarPage" title="Tab Bar" />
+    </Routes>
   </div>
   <div v-else>
-    <browser-warning />
+    <BrowserWarning />
   </div>
 </template>
 
-<script>
-import RouterView from './components/RouterView.vue';
+<script setup>
+import { ref, onMounted } from 'vue';
+import { Routes, Route } from '@openwebf/vue-router';
+
 import BrowserWarning from './components/BrowserWarning.vue';
 import HomePage from './Pages/HomePage.vue';
 import ButtonPage from './Pages/ButtonPage.vue';
@@ -105,46 +61,13 @@ import FormSectionPage from './Pages/FormSectionPage.vue';
 import ListTilePage from './Pages/ListTilePage.vue';
 import ListSectionPage from './Pages/ListSectionPage.vue';
 import TabBarPage from './Pages/TabBarPage.vue';
-export default {
-  name: 'App',
-  components: {
-    RouterView,
-    BrowserWarning,
-    HomePage,
-    ButtonPage,
-    SwitchPage,
-    InputPage,
-    IconPage,
-    SearchInputPage,
-    TextareaPage,
-    SegmentedTabPage,
-    AlertPage,
-    DatePickerPage,
-    LoadingPage,
-    ModalPopupPage,
-    PickerPage,
-    SliderPage,
-    ContextMenuPage,
-    CheckboxPage,
-    RadioPage,
-    TimerPickerPage,
-    ActionSheetPage,
-    FormRowPage,
-    FormSectionPage,
-    ListTilePage,
-    ListSectionPage,
-    TabBarPage,
-  },
-  data() {
-    return {
-      isWebF: true
-    };
-  },
-  mounted() {
-    // Check if running in WebF by checking for webf global variable
-    this.isWebF = typeof window !== 'undefined' && typeof window.webf !== 'undefined';
-  }
-};
+
+const isWebF = ref(true);
+
+onMounted(() => {
+  // Check if running in WebF by checking for webf global variable
+  isWebF.value = typeof window !== 'undefined' && typeof window.webf !== 'undefined';
+});
 </script>
 
 <style src="./assets/styles/app.css" />

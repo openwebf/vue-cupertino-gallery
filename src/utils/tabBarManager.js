@@ -1,3 +1,5 @@
+import { WebFRouter } from '@openwebf/vue-router';
+
 class TabBarManager {
     static instance = null;
     tabBarRef = null;
@@ -21,8 +23,15 @@ class TabBarManager {
     }
   
     switchTab(targetPath) {
+      const isInTabBar = this.tabBarPath === this.currentPath;
+      
       if (this.tabBarRef) {
         this.tabBarRef.switchTab(targetPath);
+      }
+      
+      if (!isInTabBar) {
+        WebFRouter.replaceState({}, this.tabBarPath);
+        this.currentPath = this.tabBarPath;
       }
     }
   }
